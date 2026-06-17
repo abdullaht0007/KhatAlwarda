@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import acBannerImg from '../../assets/images/ac-banner.jpg';
+
+const waMsg = encodeURIComponent('السلام عليكم، أرغب بحجز موعد صيانة مكيف');
+
+const problems = [
+  { ar: 'تبريد ضعيف أو معدوم', en: 'Weak or no cooling', desc_ar: 'إصلاح دوائر التبريد وشحن الفريون.', desc_en: 'Fix cooling circuits and recharge freon.' },
+  { ar: 'شحن الفريون', en: 'Freon recharge', desc_ar: 'شحن احترافي بالكميات الصحيحة والغاز الأصلي.', desc_en: 'Professional recharge with correct quantities and genuine gas.' },
+  { ar: 'تسريب المياه', en: 'Water leakage', desc_ar: 'تشخيص وإصلاح جميع أسباب التسريب من الوحدة الداخلية.', desc_en: 'Diagnose and fix all causes of internal unit water leaks.' },
+  { ar: 'ضوضاء وأصوات غريبة', en: 'Noise & strange sounds', desc_ar: 'فحص المروحة والكمبروسر وعزل الاهتزازات.', desc_en: 'Check fan, compressor, and isolate vibrations.' },
+  { ar: 'المكيف لا يعمل', en: 'Unit not starting', desc_ar: 'فحص الكهرباء، اللوحة الإلكترونية، والمكثف.', desc_en: 'Check power, control board, and capacitor.' },
+  { ar: 'رائحة كريهة', en: 'Bad smell', desc_ar: 'تنظيف عميق للفلاتر والكويل ومجرى التصريف.', desc_en: 'Deep cleaning of filters, coil, and drainage tray.' },
+  { ar: 'التكييف لا يبرد بالكفاءة', en: 'Poor efficiency', desc_ar: 'صيانة شاملة وتنظيف الكويل الخارجي والداخلي.', desc_en: 'Full service and clean both indoor and outdoor coils.' },
+  { ar: 'تركيب مكيفات جديدة', en: 'New unit installation', desc_ar: 'تركيب احترافي مع ضمان على العمل.', desc_en: 'Professional installation with work warranty.' },
+];
+
+const brands = ['Samsung · سامسونج', 'LG', 'Carrier · كاريير', 'Midea · ميديا', 'Gree · غري', 'Toshiba · توشيبا', 'Panasonic', 'Haier · هايير', 'York', 'Daikin'];
+
+const faq = [
+  { q_ar: 'كم تستغرق صيانة المكيف؟', q_en: 'How long does AC service take?', a_ar: 'عادةً من ساعة إلى ثلاث ساعات حسب نوع العطل. الإصلاحات البسيطة مثل شحن الفريون تُنجز في أقل من ساعة.', a_en: 'Usually 1–3 hours depending on the fault. Simple jobs like freon recharge take under an hour.' },
+  { q_ar: 'هل تقدمون شحن الفريون في المنزل؟', q_en: 'Do you offer freon recharge at home?', a_ar: 'نعم، نوفر خدمة شحن الفريون في موقعك مباشرة بالكميات الصحيحة والغاز المناسب لنوع مكيفك.', a_en: 'Yes, we offer on-site freon recharge with the correct quantities and gas type for your unit.' },
+  { q_ar: 'ما الماركات التي تصيّنونها؟', q_en: 'What brands do you service?', a_ar: 'نخدم جميع الماركات: سامسونج، LG، كاريير، ميديا، غري، توشيبا، باناسونيك، هايير، يورك، دايكن وغيرها.', a_en: 'All brands: Samsung, LG, Carrier, Midea, Gree, Toshiba, Panasonic, Haier, York, Daikin and more.' },
+  { q_ar: 'هل الإصلاح مضمون؟', q_en: 'Is the repair guaranteed?', a_ar: 'نعم، نوفر ضمان شهر على جميع أعمال الصيانة والقطع المستبدلة.', a_en: 'Yes, we provide 1 month warranty on all repairs and replaced parts.' },
+  { q_ar: 'هل يمكن الحجز في نفس اليوم؟', q_en: 'Can I book a same-day visit?', a_ar: 'نعم، نحاول توفير زيارة في نفس اليوم. تواصل معنا مبكراً لضمان الوقت المناسب.', a_en: 'Yes, we try to provide same-day visits. Contact us early to secure a convenient time slot.' },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://khatalwarda.sa" },
+      { "@type": "ListItem", "position": 2, "name": "صيانة مكيفات", "item": "https://khatalwarda.sa/services/ac" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "صيانة مكيفات جازان · AC Repair Jazan",
+    "provider": { "@type": "HVACBusiness", "name": "خط الوردة · KhatAlwarda" },
+    "areaServed": { "@type": "City", "name": "Jazan" },
+    "description": "صيانة مكيفات احترافية في جازان — شحن فريون، إصلاح التبريد، تنظيف، وتركيب لجميع الماركات.",
+    "url": "https://khatalwarda.sa/services/ac"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map(item => ({
+      "@type": "Question",
+      "name": item.q_en,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a_en }
+    }))
+  }
+];
+---
+
+<BaseLayout
+  title="صيانة مكيفات جازان | AC Repair Jazan — خط الوردة KhatAlwarda"
+  description="صيانة مكيفات احترافية في جازان — شحن فريون، إصلاح التبريد الضعيف، تسريب المياه، والتركيب. زيارة منزلية نفس اليوم وضمان شهر."
+  structuredData={structuredData}
+>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/" data-en="Home">الرئيسية</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span data-en="AC Repair">صيانة مكيفات</span>
+    </div>
+    <span class="kicker"><span class="dot"></span> <span data-en="AC Repair · Jazan">صيانة مكيفات · جازان</span></span>
+    <h1 data-en="Expert <span class='grad'>AC Repair</span> in Jazan">صيانة <span class="grad">مكيفات</span> احترافية في جازان</h1>
+    <p data-en="Freon recharge, weak-cooling fixes, water leaks, installation and full service — for all brands and unit types. Same-day visits available.">
+      شحن فريون، إصلاح التبريد الضعيف، تسريب المياه، التركيب والصيانة الكاملة — لجميع الماركات وأنواع الوحدات. زيارة منزلية في نفس اليوم.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-wa" href={`https://wa.me/966552959806?text=${waMsg}`} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span data-en="Book AC Repair">احجز صيانة المكيف</span>
+      </a>
+      <a class="btn btn-ghost" href="tel:+966552959806">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        <span data-en="Call Now">اتصل الآن</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Service photo banner -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="wrap">
+    <Image src={acBannerImg} width={1200} height={675} alt="صيانة مكيف احترافية في جازان" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:16px;" loading="lazy" />
+  </div>
+</section>
+
+<!-- Problems we fix -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="What We Fix">ما نصلحه</span></span>
+      <h2 data-en="All AC problems, solved">كل أعطال المكيفات، محلولة</h2>
+    </div>
+    <div class="problems-grid reveal">
+      {problems.map(p => (
+        <div class="problem-item">
+          <div class="pi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h4 data-en={p.en}>{p.ar}</h4>
+            <p data-en={p.desc_en}>{p.desc_ar}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Brands -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="Brands We Service">الماركات التي نخدمها</span></span>
+      <h2 data-en="All major brands">جميع الماركات الكبرى</h2>
+    </div>
+    <div class="brands-row reveal">
+      {brands.map(b => <span class="brand-chip">{b}</span>)}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="FAQ">الأسئلة الشائعة</span></span>
+      <h2 data-en="Common questions about AC repair">أسئلة شائعة عن صيانة المكيفات</h2>
+    </div>
+    <div class="faq-list reveal">
+      {faq.map(item => (
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span data-en={item.q_en}>{item.q_ar}</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="faq-a">
+            <span data-en={item.a_en}>{item.a_ar}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="cta glass reveal">
+      <h2 data-en="Your AC fixed — fast and guaranteed">مكيفك يُصلح — بسرعة وضمان</h2>
+      <div class="cta-actions">
+        <a class="btn btn-wa" href={`https://wa.me/966552959806?text=${waMsg}`} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span data-en="Book via WhatsApp">احجز عبر واتساب</span>
+        </a>
+        <a class="btn btn-ghost" href="tel:+966552959806">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          <span data-en="Call Directly">اتصل مباشرة</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

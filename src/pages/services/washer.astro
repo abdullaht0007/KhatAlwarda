@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import washerBannerImg from '../../assets/images/svc-washer-banner.jpg';
+
+const waMsg = encodeURIComponent('السلام عليكم، أرغب بحجز موعد صيانة غسالة');
+
+const problems = [
+  { ar: 'لا تدور أو لا تعصر', en: 'Not spinning or wringing', desc_ar: 'فحص المحرك، حزام التوتر، والإلكترونيات.', desc_en: 'Check motor, belt tension, and electronics.' },
+  { ar: 'مشكلة التصريف', en: 'Drainage problems', desc_ar: 'فحص وتنظيف مضخة التصريف وخرطوم الصرف.', desc_en: 'Check and clean the drain pump and hose.' },
+  { ar: 'تسريب المياه', en: 'Water leakage', desc_ar: 'الكشف عن مصدر التسريب وإصلاح الخرطوم أو الباب.', desc_en: 'Locate the leak source and fix hose or door seal.' },
+  { ar: 'أعطال لوحة التحكم', en: 'Control board faults', desc_ar: 'إصلاح أو استبدال اللوحة الإلكترونية وأكواد الخطأ.', desc_en: 'Repair or replace control board and clear error codes.' },
+  { ar: 'اهتزاز شديد', en: 'Excessive vibration', desc_ar: 'ضبط التوازن، فحص وسادات الامتصاص والدعامات.', desc_en: 'Balance adjustment, check shock absorbers and bearings.' },
+  { ar: 'لا تملأ بالماء', en: 'Not filling with water', desc_ar: 'فحص صمام دخول المياه والخرطوم والضغط.', desc_en: 'Check water inlet valve, hose, and pressure.' },
+  { ar: 'أصوات عالية أثناء العمل', en: 'Loud noise during operation', desc_ar: 'فحص البيرنق والدرام والمحرك.', desc_en: 'Check drum bearings, drum, and motor.' },
+  { ar: 'الغسالة لا تفتح', en: 'Door not opening', desc_ar: 'إصلاح أو استبدال قفل الباب والبلوكاج.', desc_en: 'Repair or replace door lock and interlock.' },
+];
+
+const brands = ['Samsung · سامسونج', 'LG', 'Bosch', 'Zanussi · زانوسي', 'Haier · هايير', 'Whirlpool', 'Beko', 'Ariston', 'Sharp · شارب', 'Miele'];
+
+const faq = [
+  { q_ar: 'هل تصيّنون الغسالة في المنزل؟', q_en: 'Do you repair washers at home?', a_ar: 'نعم، نصل إليك ونصلح الغسالة في موقعك. لا تحتاج لنقلها.', a_en: 'Yes, we come to you and fix the washer on-site. No need to move it.' },
+  { q_ar: 'ما الفرق بين الغسالة العمودية والأفقية؟', q_en: 'Top-load vs front-load — do you fix both?', a_ar: 'نعم، نصيّن جميع أنواع الغسالات: عمودية وأفقية، آلية وشبه آلية.', a_en: 'Yes, we service all washer types: top-load and front-load, fully and semi-automatic.' },
+  { q_ar: 'كم تكلف صيانة الغسالة؟', q_en: 'How much does washer repair cost?', a_ar: 'التكلفة حسب نوع العطل. التشخيص مجاني ونعطيك السعر قبل البدء.', a_en: 'Cost depends on the fault. Diagnosis is free and we quote before starting.' },
+  { q_ar: 'هل الإصلاح مضمون؟', q_en: 'Is the repair guaranteed?', a_ar: 'نعم، ضمان شهر على العمل والقطع المستبدلة.', a_en: 'Yes, 1-month warranty on labor and replaced parts.' },
+];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://khatalwarda.sa" },
+      { "@type": "ListItem", "position": 2, "name": "صيانة غسالات", "item": "https://khatalwarda.sa/services/washer" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "صيانة غسالات جازان · Washing Machine Repair Jazan",
+    "provider": { "@type": "HVACBusiness", "name": "خط الوردة · KhatAlwarda" },
+    "areaServed": { "@type": "City", "name": "Jazan" },
+    "description": "صيانة غسالات احترافية في جازان — إصلاح التصريف، الدوران، تسريب المياه، ولوحة التحكم.",
+    "url": "https://khatalwarda.sa/services/washer"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map(item => ({
+      "@type": "Question",
+      "name": item.q_en,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a_en }
+    }))
+  }
+];
+---
+
+<BaseLayout
+  title="صيانة غسالات جازان | Washing Machine Repair Jazan — خط الوردة"
+  description="صيانة غسالات احترافية في جازان — إصلاح التصريف، عدم الدوران، تسريب المياه، لوحة التحكم. زيارة منزلية وضمان شهر."
+  structuredData={structuredData}
+>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/" data-en="Home">الرئيسية</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span data-en="Washer Repair">صيانة غسالات</span>
+    </div>
+    <span class="kicker"><span class="dot"></span> <span data-en="Washer Repair · Jazan">صيانة غسالات · جازان</span></span>
+    <h1 data-en="Expert <span class='grad'>Washer Repair</span> in Jazan">صيانة <span class="grad">غسالات</span> احترافية في جازان</h1>
+    <p data-en="Fix drainage, spinning, leaks, control boards and vibration — for all brands, top-load and front-load. Same-day visits available.">
+      إصلاح التصريف، الدوران، التسريب، لوحة التحكم والاهتزاز — لجميع الماركات والأنواع. زيارة منزلية في نفس اليوم.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-wa" href={`https://wa.me/966552959806?text=${waMsg}`} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span data-en="Book Washer Repair">احجز صيانة الغسالة</span>
+      </a>
+      <a class="btn btn-ghost" href="tel:+966552959806">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        <span data-en="Call Now">اتصل الآن</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Service photo banner -->
+<section class="sec-pad" style="padding-top:0">
+  <div class="wrap">
+    <Image src={washerBannerImg} width={1200} height={675} alt="صيانة غسالة احترافية في جازان" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:16px;" loading="lazy" />
+  </div>
+</section>
+
+<!-- Problems -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="What We Fix">ما نصلحه</span></span>
+      <h2 data-en="All washer problems, solved">كل أعطال الغسالات، محلولة</h2>
+    </div>
+    <div class="problems-grid reveal">
+      {problems.map(p => (
+        <div class="problem-item">
+          <div class="pi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h4 data-en={p.en}>{p.ar}</h4>
+            <p data-en={p.desc_en}>{p.desc_ar}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Brands -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="Brands We Service">الماركات التي نخدمها</span></span>
+      <h2 data-en="All major brands">جميع الماركات الكبرى</h2>
+    </div>
+    <div class="brands-row reveal">
+      {brands.map(b => <span class="brand-chip">{b}</span>)}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="FAQ">الأسئلة الشائعة</span></span>
+      <h2 data-en="Common questions about washer repair">أسئلة شائعة عن صيانة الغسالات</h2>
+    </div>
+    <div class="faq-list reveal">
+      {faq.map(item => (
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span data-en={item.q_en}>{item.q_ar}</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="faq-a">
+            <span data-en={item.a_en}>{item.a_ar}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="cta glass reveal">
+      <h2 data-en="Your washer fixed — fast and guaranteed">غسالتك تُصلح — بسرعة وضمان</h2>
+      <div class="cta-actions">
+        <a class="btn btn-wa" href={`https://wa.me/966552959806?text=${waMsg}`} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span data-en="Book via WhatsApp">احجز عبر واتساب</span>
+        </a>
+        <a class="btn btn-ghost" href="tel:+966552959806">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          <span data-en="Call Directly">اتصل مباشرة</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

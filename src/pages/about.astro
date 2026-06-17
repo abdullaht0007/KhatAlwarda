@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import workshopImg from '../assets/images/workshop.jpg';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "من نحن — خط الوردة",
+  "url": "https://khatalwarda.sa/about",
+  "description": "تعرف على فريق خط الوردة — فنيون متخصصون في صيانة الأجهزة المنزلية بجازان منذ أكثر من ١٢ عاماً."
+};
+---
+
+<BaseLayout
+  title="من نحن | خط الوردة — About KhatAlwarda · Jazan Appliance Repair"
+  description="تعرف على فريق خط الوردة — فنيون معتمدون يخدمون جازان منذ أكثر من ١٢ عاماً. خبرة، ضمان، وخدمة تصل إلى منزلك."
+  structuredData={structuredData}
+>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/" data-en="Home">الرئيسية</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span data-en="About Us">من نحن</span>
+    </div>
+    <span class="kicker"><span class="dot"></span> <span data-en="Our Story">قصتنا</span></span>
+    <h1 data-en="More than <span class='grad'>12 years</span> of trust">أكثر من <span class="grad">١٢ عاماً</span> من الثقة</h1>
+    <p data-en="KhatAlwarda was built on a simple belief: every appliance deserves a proper fix — not a patch that fails next week.">
+      خط الوردة بُني على قناعة بسيطة: كل جهاز يستحق إصلاحاً حقيقياً — لا ترقيعاً يفشل الأسبوع القادم.
+    </p>
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="story-grid reveal">
+      <div class="story-body">
+        <span class="kicker"><span class="dot"></span> <span data-en="Founded in Jazan">تأسس في جازان</span></span>
+        <h2 data-en="From a small workshop to Jazan's trusted repair team">من ورشة صغيرة إلى فريق الصيانة الموثوق في جازان</h2>
+        <p data-en="We started over a decade ago with a single workshop and a commitment to honest, quality repairs. Word spread. Customers came back. Families recommended us to their neighbours.">
+          بدأنا منذ أكثر من عقد بورشة صغيرة وتعهد واحد: إصلاح صادق وعمل نوعي. انتشر الخبر. عاد العملاء. نصحت العائلات جيرانها بنا.
+        </p>
+        <p data-en="Today we serve hundreds of families across Jazan — still with the same values: show up on time, fix it right, stand behind the work with a warranty.">
+          اليوم نخدم مئات العائلات في جازان — بنفس القيم: الحضور في الوقت، الإصلاح الصحيح، والوقوف خلف العمل بضمان.
+        </p>
+      </div>
+      <div class="story-visual glass">
+        <Image src={workshopImg} width={900} height={675} alt="ورشة خط الوردة" style="display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px;" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="Our Values">قيمنا</span></span>
+      <h2 data-en="What we stand for">ما نؤمن به</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card glass reveal">
+        <div class="vc-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 7v5c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V7l-8-5z"/><path d="M9.5 12.5l1.8 1.8 3.5-3.8"/></svg>
+        </div>
+        <h3 data-en="Honest Diagnosis">تشخيص صادق</h3>
+        <p data-en="We tell you exactly what's wrong and what it costs — no hidden fees, no unnecessary parts.">نخبرك بالضبط بالمشكلة والتكلفة — لا رسوم مخفية، لا قطع غير ضرورية.</p>
+      </div>
+      <div class="value-card glass reveal">
+        <div class="vc-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.7 0L3 12.3a4 4 0 0 0 5.7 5.7l1-1"/><path d="M9.3 17.7a4 4 0 0 0 5.7 0l6-6a4 4 0 0 0-5.7-5.7l-1 1"/></svg>
+        </div>
+        <h3 data-en="Genuine Parts Only">قطع أصلية فقط</h3>
+        <p data-en="Every replacement part we fit is original — so the fix lasts, and the warranty means something.">كل قطعة نركبها أصلية — حتى يدوم الإصلاح ويكون الضمان حقيقياً.</p>
+      </div>
+      <div class="value-card glass reveal">
+        <div class="vc-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 data-en="Fast Response">استجابة سريعة</h3>
+        <p data-en="We know a broken AC in summer or a dead fridge is urgent. We prioritise same-day visits.">نعرف أن مكيفاً معطلاً في الصيف أو ثلاجة مفقودة أمر عاجل. نعطي أولوية لزيارات نفس اليوم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker"><span class="dot"></span> <span data-en="Find Us">موقعنا</span></span>
+      <h2 data-en="Visit our workshop in Jazan">زورونا في ورشتنا بجازان</h2>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe
+        class="map-frame"
+        src="https://maps.google.com/maps?q=16.897798,42.556324&z=15&output=embed"
+        width="100%"
+        height="420"
+        style="border:0;border-radius:16px;display:block;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="موقع خط الوردة على الخريطة"
+      ></iframe>
+      <div class="map-actions">
+        <a
+          class="btn btn-primary"
+          href="https://maps.app.goo.gl/NUky35knUYGC7Np67"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-en="Open in Google Maps">افتح في خرائط جوجل</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="cta glass reveal">
+      <h2 data-en="Ready to fix your appliance?">جاهزون لإصلاح جهازك؟</h2>
+      <div class="cta-actions">
+        <a class="btn btn-wa" href="https://wa.me/966552959806?text=السلام%20عليكم،%20أرغب%20بحجز%20موعد%20صيانة" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span data-en="WhatsApp Us">راسلنا واتساب</span>
+        </a>
+        <a class="btn btn-ghost" href="tel:+966552959806">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          <span data-en="Call Now">اتصل الآن</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

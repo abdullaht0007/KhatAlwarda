@@ -1,0 +1,310 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  structuredData?: object | object[];
+  ogImage?: string;
+}
+
+const { title, description, structuredData, ogImage } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageURL = new URL(ogImage ?? '/images/15.jpg', Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="theme-color" content="#0F1117" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:width" content="2560" />
+  <meta property="og:image:height" content="1440" />
+  <meta property="og:locale" content="ar_SA" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImageURL} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230F1117'/%3E%3Cpath d='M12 4L5 7.5v4.2c0 3.8 2.7 6.6 7 7.8 4.3-1.2 7-4 7-7.8V7.5L12 4z' fill='none' stroke='%230EA5E9' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M9.5 12l1.7 1.7 3.3-3.6' fill='none' stroke='%233B82F6' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <!-- Smooth page transitions — eliminates flicker on navigation -->
+  <ViewTransitions />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Page-specific head content (preload hints, etc.) -->
+  <slot name="head" />
+
+  <!-- Structured data -->
+  {structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )}
+
+  <!-- Google Analytics 4 — replace G-Z3R5H8HM9B with your G-XXXXXXXXXX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3R5H8HM9B"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z3R5H8HM9B');
+  </script>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="orb"></div>
+  </div>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Film grain overlay -->
+  <svg class="grain-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="grain-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain-filter)" opacity="0.055"/>
+  </svg>
+
+  <Header />
+
+  <main id="top">
+    <slot />
+  </main>
+
+  <Footer />
+  <WhatsAppFab />
+
+  <!-- Mobile sticky CTA bar -->
+  <div class="mobile-cta-bar">
+    <a class="btn btn-wa" href="https://wa.me/966552959806?text=السلام%20عليكم،%20أرغب%20بحجز%20موعد%20صيانة" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span data-en="WhatsApp">واتساب</span>
+    </a>
+    <a class="btn btn-ghost" href="tel:+966552959806">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+      <span data-en="Call">اتصل</span>
+    </a>
+  </div>
+
+  <script>
+    // ─── Language helpers ────────────────────────────────────────────────────
+
+    // Returns null on a brand-new visit (never touched the toggle)
+    function getSavedLang() {
+      try { return localStorage.getItem('kw_lang'); } catch { return null; }
+    }
+
+    // Applies lang to the DOM only — never touches localStorage
+    function applyLang(lang) {
+      const en = lang === 'en';
+      document.documentElement.lang = en ? 'en' : 'ar';
+      document.documentElement.dir = en ? 'ltr' : 'rtl';
+      document.body.classList.toggle('en-mode', en);
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset.ar === undefined) el.dataset.ar = el.innerHTML;
+        el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+      });
+      const lbl = document.querySelector('.lt-label');
+      if (lbl) lbl.textContent = en ? 'عربي' : 'EN';
+    }
+
+    // Called only when the user explicitly clicks the toggle — saves the choice
+    function setLang(lang) {
+      applyLang(lang);
+      try { localStorage.setItem('kw_lang', lang); } catch {}
+    }
+
+    // ─── Before each swap: patch the INCOMING document before it renders ─────
+    document.addEventListener('astro:before-swap', (e) => {
+      // Only override when user has explicitly saved 'en' — never assume English
+      if (getSavedLang() === 'en') {
+        e.newDocument.documentElement.lang = 'en';
+        e.newDocument.documentElement.dir = 'ltr';
+        e.newDocument.body?.classList.add('en-mode');
+        e.newDocument.documentElement.classList.add('js');
+      }
+    });
+
+    // ─── After every navigation (initial load + ViewTransitions swap) ────────
+    document.addEventListener('astro:page-load', () => {
+      document.documentElement.classList.add('js');
+
+      // Fresh visit (null) → Arabic, no action needed
+      // Returning visitor who chose EN → re-apply English to [data-en] text
+      const saved = getSavedLang();
+      if (saved === 'en') applyLang('en');
+
+      // Lang toggle button
+      document.getElementById('langToggle')?.addEventListener('click', () => {
+        setLang(document.body.classList.contains('en-mode') ? 'ar' : 'en');
+      });
+
+      // Mobile menu
+      const navToggle = document.getElementById('navToggle');
+      const backdrop  = document.getElementById('menuBackdrop');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = () => {
+        document.body.classList.remove('menu-open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+      };
+      navToggle?.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+      backdrop?.addEventListener('click', closeMenu);
+      mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+      // Scroll reveal
+      const revealIo = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            e.target.style.transitionDelay = (Math.min(i, 3) * 70) + 'ms';
+            e.target.classList.add('in');
+            revealIo.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealIo.observe(el));
+
+      const revealInView = () => {
+        document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+          if (el.getBoundingClientRect().top < window.innerHeight * 0.95) el.classList.add('in');
+        });
+      };
+      requestAnimationFrame(revealInView);
+      window.addEventListener('scroll', revealInView, { passive: true });
+      setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+        el.style.transition = 'none'; el.classList.add('in');
+      }), 1600);
+
+      // Count-up stats
+      const statIo = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const target = parseInt(e.target.dataset.count, 10);
+            const suffix = e.target.dataset.suffix || '';
+            const dur = 1400, start = performance.now();
+            e.target.closest('.stat')?.classList.add('counted');
+            const tick = (now) => {
+              const p = Math.min((now - start) / dur, 1);
+              e.target.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US') + suffix;
+              if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            statIo.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.val[data-count]').forEach(el => statIo.observe(el));
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const wasOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+          if (!wasOpen) item.classList.add('open');
+        });
+      });
+
+      // Hero typewriter
+      const heroTw = document.getElementById('heroTw');
+      if (heroTw) {
+        const words = { ar: ['مكيف', 'ثلاجة', 'غسالة'], en: ['AC', 'Fridge', 'Washer'] };
+        let wi = 0, ci = 0, deleting = false;
+        const getLang = () => document.body.classList.contains('en-mode') ? 'en' : 'ar';
+        const tick = () => {
+          const list = words[getLang()];
+          const word = list[wi];
+          if (!deleting) {
+            heroTw.textContent = word.slice(0, ++ci);
+            if (ci >= word.length) {
+              if (wi >= list.length - 1) return;
+              setTimeout(() => { deleting = true; tick(); }, 2000);
+              return;
+            }
+          } else {
+            heroTw.textContent = word.slice(0, --ci);
+            if (ci <= 0) { deleting = false; wi = (wi + 1) % list.length; }
+          }
+          setTimeout(tick, deleting ? 55 : 100);
+        };
+        setTimeout(tick, 900);
+      }
+
+      // Cursor glow + Magnetic FAB — single RAF-throttled mousemove handler
+      if (window.matchMedia('(pointer: fine)').matches) {
+        const glow = document.querySelector('.cursor-glow');
+        const fabWrap = document.querySelector('.wa-fab-wrap');
+        if (glow) glow.classList.add('active');
+        let mx = 0, my = 0, rafPending = false;
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX; my = e.clientY;
+          if (rafPending) return;
+          rafPending = true;
+          requestAnimationFrame(() => {
+            if (glow) {
+              glow.style.setProperty('--cx', mx + 'px');
+              glow.style.setProperty('--cy', my + 'px');
+            }
+            if (fabWrap) {
+              const r = fabWrap.getBoundingClientRect();
+              const dx = mx - (r.left + r.width / 2);
+              const dy = my - (r.top + r.height / 2);
+              const dist = Math.hypot(dx, dy);
+              if (dist < 120) {
+                const pull = (1 - dist / 120) * 0.38;
+                fabWrap.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
+              } else {
+                fabWrap.style.transform = '';
+              }
+            }
+            rafPending = false;
+          });
+        }, { passive: true });
+      }
+
+      // Conversion tracking — WhatsApp clicks
+      document.querySelectorAll('[href*="wa.me"]').forEach(el => {
+        el.addEventListener('click', () => {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'whatsapp_click', { event_category: 'conversion', event_label: el.innerText?.trim() || 'WhatsApp' });
+          }
+        });
+      });
+
+      // Conversion tracking — phone clicks
+      document.querySelectorAll('[href^="tel:"]').forEach(el => {
+        el.addEventListener('click', () => {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'phone_call_click', { event_category: 'conversion', event_label: 'Phone Call' });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

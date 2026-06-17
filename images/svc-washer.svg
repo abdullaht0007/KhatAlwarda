@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#11151f"></stop><stop offset="1" stop-color="#0a0d13"></stop>
+</linearGradient>
+<radialGradient id="glow" cx="50%" cy="40%" r="58%">
+<stop offset="0" stop-color="#0EA5E9" stop-opacity="0.30"></stop>
+<stop offset="55%" stop-color="#3B82F6" stop-opacity="0.10"></stop>
+<stop offset="100%" stop-color="#0EA5E9" stop-opacity="0"></stop>
+</radialGradient>
+<linearGradient id="ink" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#9bdcfb"></stop><stop offset="1" stop-color="#4f93f7"></stop>
+</linearGradient>
+<pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+<path d="M38 0H0V38" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"></path>
+</pattern>
+<filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"></feGaussianBlur></filter>
+</defs>
+<rect width="800" height="520" fill="url(#bg)"></rect>
+<rect width="800" height="520" fill="url(#grid)"></rect>
+<rect width="800" height="520" fill="url(#glow)"></rect><circle cx="400" cy="260" r="150" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.4"></circle><circle cx="400" cy="260" r="108" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1.4"></circle><g transform="translate(400,260) scale(9.2) translate(-12,-12)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.05" stroke="#0EA5E9" stroke-opacity="0.55" filter="url(#soft)"><rect x="4" y="2" width="16" height="20" rx="2"></rect><circle cx="12" cy="14" r="4.5"></circle><circle cx="12" cy="14" r="1.6"></circle><path d="M7 5.5h.01"></path><path d="M10 5.5h.01"></path></g><g transform="translate(400,260) scale(9.2) translate(-12,-12)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.05" stroke="url(#ink)"><rect x="4" y="2" width="16" height="20" rx="2"></rect><circle cx="12" cy="14" r="4.5"></circle><circle cx="12" cy="14" r="1.6"></circle><path d="M7 5.5h.01"></path><path d="M10 5.5h.01"></path></g></svg>
