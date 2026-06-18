@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://khatalwarda.sa/sitemap-index.xml
+Sitemap: https://khatalwarda.com/sitemap-index.xml
