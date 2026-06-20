@@ -304,6 +304,7 @@ const ogImageURL = new URL(ogImage ?? '/images/15.jpg', Astro.site).toString();
         el.addEventListener('click', () => {
           if (typeof gtag !== 'undefined') {
             gtag('event', 'phone_call_click', { event_category: 'conversion', event_label: 'Phone Call' });
+            gtag('event', 'conversion', { send_to: 'AW-18249828158' });
           }
         });
       });
