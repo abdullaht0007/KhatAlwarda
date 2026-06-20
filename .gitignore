@@ -17,3 +17,8 @@ node_modules/
 
 # Image editor state
 .image-slots.state.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
